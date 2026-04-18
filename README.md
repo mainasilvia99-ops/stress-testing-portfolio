@@ -1,5 +1,6 @@
 # stress-testing-portfolio
 This project investigates how a multi-asset portfolio behaves under extreme market conditions using stress testing and Monte Carlo simulation.
+This model demonstrates how institutional investors evaluate portfolio resilience under extreme conditions and highlights the limitations of traditional risk metrics.
 
 Overview
 This project develops a financial risk analysis pipeline to evaluate how a multi-asset portfolio behaves under both normal and extreme market conditions.
@@ -49,12 +50,18 @@ Key Observations
 •	Correlations increase during crises, reducing diversification
 •	Tail risk is substantial and cannot be captured by volatility alone
 •	Historical models underestimate extreme losses
+
 Key Results
 •	Stress scenarios significantly increase downside risk
 •	Market crash produces the most severe losses
 •	Diversification benefits weaken during systemic shocks
 •	Expected Shortfall consistently exceeds VaR, highlighting tail risk
 •	Monte Carlo simulation confirms risk but may underestimate extreme events
+
+Key Insights
+- Market crash produced the largest tail risk
+- Diversification breaks down during stress
+- Expected Shortfall exceeds VaR → significant tail exposure
    
 How to Run
 1.	Clone the repository
@@ -71,6 +78,8 @@ Skills Demonstrated
 •Statistical analysis
 •Monte Carlo simulation
 •Scenario-based stress testing
+
+Limitations: The model assumes normally distributed returns, which may underestimate extreme market events.
 
 Future Improvements
 •Using fat-tailed distributions (t-distribution) 
