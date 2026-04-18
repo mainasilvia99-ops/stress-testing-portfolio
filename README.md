@@ -1,5 +1,6 @@
 # stress-testing-portfolio
 This project investigates how a multi-asset portfolio behaves under extreme market conditions using stress testing and Monte Carlo simulation.
+
 This model demonstrates how institutional investors evaluate portfolio resilience under extreme conditions and highlights the limitations of traditional risk metrics.
 
 Overview
@@ -29,29 +30,35 @@ Methodology
 •	Data extraction via Yahoo Finance API
 •	Storage in MySQL database
 •	Retrieval and transformation in R
+
 2. Portfolio Construction
 •	Log returns computed for each asset
 •	Portfolio returns calculated using equal weights
+
 3. Risk Metrics
 •	Value at Risk (VaR)
 •	Expected Shortfall (ES)
 •	Volatility and distribution analysis
+
 4. Stress Testing Scenarios
 •	Market Crash (-20% shock across assets)
 •	Interest Rate Shock (sector-specific impact)
 •	Emerging Market Crisis (localized shock to VWO)
+
 5. Monte Carlo Simulation
 •	10,000 simulated scenarios
 •	Multivariate normal distribution
 •	Portfolio return distribution analysis
 
 Key Observations
+
 •	Portfolio risk is non-linear under stress
 •	Correlations increase during crises, reducing diversification
 •	Tail risk is substantial and cannot be captured by volatility alone
 •	Historical models underestimate extreme losses
 
 Key Results
+
 •	Stress scenarios significantly increase downside risk
 •	Market crash produces the most severe losses
 •	Diversification benefits weaken during systemic shocks
@@ -67,6 +74,7 @@ How to Run
 1.	Clone the repository
 2.	Open R project
 3.	Run scripts in order:
+   
 01_data_extraction.R  
 02_returns_computation.R  
 03_portfolio_construction.R  
