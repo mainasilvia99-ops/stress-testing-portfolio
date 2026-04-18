@@ -61,16 +61,16 @@ Key Results
 Key Insights
 - Market crash produced the largest tail risk
 - Diversification breaks down during stress
-- Expected Shortfall exceeds VaR → significant tail exposure
+- Expected Shortfall exceeds VaR meaning significant tail exposure
    
 How to Run
 1.	Clone the repository
 2.	Open R project
 3.	Run scripts in order:
-Script 1 data extraction and sql connection.R
-Script 2 stock return computation and exploratory data analysis.R
-Script 3 portfolio construction and risk visualization.R
-Script 4 scenario analysis and stress testing.R
+01_data_extraction.R  
+02_returns_computation.R  
+03_portfolio_construction.R  
+04_stress_testing.R  
 
 Skills Demonstrated
 •Financial risk modeling
