@@ -70,7 +70,7 @@ An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 * VaR (95%): **~2.75% daily loss**
 * Expected Shortfall: significantly higher → **tail losses are severe**
 
-> VaR underestimates extreme risk — ES provides a more realistic measure.
+VaR underestimates extreme risk — ES provides a more realistic measure.
 
 ### Stress Testing Results
 
@@ -112,6 +112,7 @@ This highlights the importance of model selection in financial risk management.
 * Macro-driven scenario modeling
 
 ##  Project Structure
+
 portfolio-stress-testing/
 ├── README.md
 ├── scripts/
@@ -122,8 +123,8 @@ portfolio-stress-testing/
 │   └── stock_returns_data.pdf
 │   └── thefour_stock_prices_raw_data.pdf
 ├── outputs/
-│   └── graphical plots
-│   └── table results
+    └── graphical plots
+    └── table results
 
 
 ## Tech Stack
