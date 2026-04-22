@@ -1,113 +1,205 @@
-# stress-testing-portfolio
-This project investigates how a multi-asset portfolio behaves under extreme market conditions using stress testing and Monte Carlo simulation.
+#  Portfolio Stress Testing & Scenario Analysis
 
-This model demonstrates how institutional investors evaluate portfolio resilience under extreme conditions and highlights the limitations of traditional risk metrics.
+##  Overview
 
-Overview
-This project develops a financial risk analysis pipeline to evaluate how a multi-asset portfolio behaves under both normal and extreme market conditions.
+This project develops a comprehensive **portfolio risk and stress testing framework** to evaluate how financial assets behave under both normal and extreme market conditions.
 
-It combines:
+Traditional risk models such as Value at Risk (VaR) often underestimate losses during periods of financial stress. This project addresses these limitations by integrating:
 
-•	Historical risk analysis
-•	Scenario-based stress testing
-•	Monte Carlo simulation
+* Historical risk analysis
+* Scenario-based stress testing
+* Monte Carlo simulation (Normal & Student-t)
 
-The objective is to quantify downside risk, tail exposure, and portfolio vulnerability using real market data.
+The result is a **fully reproducible risk analytics pipeline** implemented in R.
 
-Tools & Technologies
+---
 
-•	R (quantmod,dplyr, ggplot2, MASS, tidyr)
-•	MySQL (data storage)
-•	Yahoo Finance (data source)
+##  Key Objectives
 
-Portfolio Composition
+* Quantify portfolio risk under normal market conditions
+* Evaluate downside risk using VaR and Expected Shortfall (ES)
+* Analyze portfolio behavior under macroeconomic stress scenarios
+* Compare risk estimates across different statistical models
+* Demonstrate the impact of fat tails and model assumptions
 
-•	Apple stock (AAPL) – Large-cap technology
-•	JP Morgan Stock (JPM) – Banking sector
-•	Tesla Stock (TSLA) – High-growth / high-volatility
-•	Vanguard FTSE EFT Stock (VWO) – Emerging markets ETF
-Equal-weighted portfolio (25% each)
+---
 
-Methodology
+## Portfolio Composition
 
-1. Data Pipeline
+An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 
-•	Data extraction via Yahoo Finance API
-•	Storage in MySQL database
-•	Retrieval and transformation in R
+* **AAPL** – Large-cap technology
+* **TSLA** – High-growth, high-volatility
+* **JPM** – Banking sector
+* **VWO** – Emerging markets exposure
 
-2. Portfolio Construction
-   
-•	Log returns computed for each asset
-•	Portfolio returns calculated using equal weights
+---
 
-3. Risk Metrics
-   
-•	Value at Risk (VaR)
-•	Expected Shortfall (ES)
-•	Volatility and distribution analysis
+## Methodology
 
-4. Stress Testing Scenarios
+### Data
 
-•	Market Crash (-20% shock across assets)
-•	Interest Rate Shock (sector-specific impact)
-•	Emerging Market Crisis (localized shock to VWO)
+* Source: Yahoo Finance
+* Frequency: Daily prices (from 2020 onward)
+* Storage: MySQL database for reproducibility
 
-5. Monte Carlo Simulation
-   
-•	10,000 simulated scenarios
-•	Multivariate normal distribution
-•	Portfolio return distribution analysis
+---
 
-Key Observations
+### Risk Measures
 
-•	Portfolio risk is non-linear under stress
-•	Correlations increase during crises, reducing diversification
-•	Tail risk is substantial and cannot be captured by volatility alone
-•	Historical models underestimate extreme losses
+* Mean Return
+* Volatility (Standard Deviation)
+* Skewness & Kurtosis
+* Value at Risk (VaR)
+* Expected Shortfall (ES)
 
-Key Results
+---
 
-•	Stress scenarios significantly increase downside risk
-•	Market crash produces the most severe losses
-•	Diversification benefits weaken during systemic shocks
-•	Expected Shortfall consistently exceeds VaR, highlighting tail risk
-•	Monte Carlo simulation confirms risk but may underestimate extreme events
+### Stress Testing Scenarios
 
-Key Insights
-- Market crash produced the largest tail risk
-- Diversification breaks down during stress
-- Expected Shortfall exceeds VaR meaning significant tail exposure
-   
-How to Run
+* Market Crash (-20%)
+* Interest Rate Shock
+* Emerging Market Crisis
 
-1.	Clone the repository
-2.	Open R project
-3.	Run scripts in order:
-   
-01_data_extraction.R  
-02_returns_computation.R  
-03_portfolio_construction.R  
-04_stress_testing.R  
+---
 
-Skills Demonstrated
+### Monte Carlo Simulation
 
-•Financial risk modeling
-•Data engineering (SQL + R pipeline)
-•Statistical analysis
-•Monte Carlo simulation
-•Scenario-based stress testing
+* 10,000 simulated scenarios
+* Multivariate Normal distribution
+* Multivariate Student-t distribution (fat tails)
 
-Limitations: 
+---
 
-The model assumes normally distributed returns, which may underestimate extreme market events.
+## Key Results
 
-Future Improvements
+### Base Risk Metrics Profile
 
-•Using fat-tailed distributions (t-distribution) 
-•Employing volatility modeling (GARCH)
-•Dynamic portfolio optimization
-•Macro-driven stress scenarios
+* Annualized volatility: **~29%**
+* Negative skewness → **downside asymmetry**
+* High kurtosis (~8.6) → **fat tails / extreme events**
+
+---
+
+###  Tail Risk Insights
+
+* VaR (95%): **~2.75% daily loss**
+* Expected Shortfall: significantly higher → **tail losses are severe**
+
+> VaR underestimates extreme risk — ES provides a more realistic measure.
+
+---
+
+### Stress Testing Results
+
+* Market crash scenario produces **2x loss amplification**
+* Portfolio losses exceed **25% over a 1-month horizon** under stress
+* Diversification weakens significantly during systemic shocks
+
+---
+
+###  Model Comparison 
+
+| Model                 | VaR 95% | VaR 99% |
+| --------------------- | ------- | ------- |
+| Normal Monte Carlo    | -2.95%  | -4.14%  |
+| Student-t Monte Carlo | -3.63%  | -5.59%  |
+
+Student-t captures **fat tails and extreme losses**
+Normal distribution **underestimates tail risk**
+
+> This highlights the importance of model selection in financial risk management.
+
+---
+
+## Key Takeaways
+
+* Financial returns are **non-normal and heavy-tailed**
+* Tail events dominate portfolio risk
+* Diversification is **state-dependent**
+* VaR alone is insufficient → ES + stress testing are essential
+* Model assumptions significantly impact risk estimates
+
+---
+
+##  Limitations
+
+* Assumes static portfolio weights
+* Relies partly on historical data
+* Normal Monte Carlo underestimates extreme events
+
+---
+
+## Future Improvements
+
+* Extreme Value Theory (EVT) for tail modeling
+* GARCH models for volatility clustering
+* Dynamic portfolio optimization
+* Macro-driven scenario modeling
+
+---
+
+##  Project Structure
+
+```
+portfolio-stress-testing/
+├── README.md
+├── scripts/
+│   └── main_pipeline.R
+├── data/
+│   └──financedata_db_backup.sql
+│   └── sql_queries_financedata_db.sql
+│   └── stock_returns_data.pdf
+│   └── thefour_stock_prices_raw_data.pdf
+├── outputs/
+│   └── graphical plots
+│   └── table results
+
+---
+
+## Tech Stack
+
+* **R** (quantmod, PerformanceAnalytics, e1071, MASS)
+* **SQL (MySQL)** for data storage
+* **Excel** for reporting
+
+---
+
+## How to Run
+
+1. Clone the repository
+2. Open `scripts/main_pipeline.R`
+3. Run the script to:
+
+   * fetch data
+   * compute risk metrics
+   * generate stress scenarios
+   * export results
+
+---
+
+## Why This Project Matters
+
+This project demonstrates practical skills in:
+
+* Quantitative risk modeling
+* Financial data analysis
+* Scenario-based stress testing
+* Model validation and comparison
+* Building reproducible analytical pipelines
+
+---
+
+## 👤 Author
+
+**Maina Silvia**
+Aspiring Quant / Financial Engineer
+
+---
+
+## Final Insight
+
+Portfolio risk is driven not by average outcomes, but by extreme events — making tail risk modeling essential for real-world financial decision-making.
 
 Author
 Maina Silvia
