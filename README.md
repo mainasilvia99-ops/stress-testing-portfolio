@@ -12,8 +12,6 @@ Traditional risk models such as Value at Risk (VaR) often underestimate losses d
 
 The result is a **fully reproducible risk analytics pipeline** implemented in R.
 
----
-
 ##  Key Objectives
 
 * Quantify portfolio risk under normal market conditions
@@ -21,8 +19,6 @@ The result is a **fully reproducible risk analytics pipeline** implemented in R.
 * Analyze portfolio behavior under macroeconomic stress scenarios
 * Compare risk estimates across different statistical models
 * Demonstrate the impact of fat tails and model assumptions
-
----
 
 ## Portfolio Composition
 
@@ -32,9 +28,7 @@ An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 * **TSLA** – High-growth, high-volatility
 * **JPM** – Banking sector
 * **VWO** – Emerging markets exposure
-
----
-
+  
 ## Methodology
 
 ### Data
@@ -42,8 +36,6 @@ An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 * Source: Yahoo Finance
 * Frequency: Daily prices (from 2020 onward)
 * Storage: MySQL database for reproducibility
-
----
 
 ### Risk Measures
 
@@ -53,23 +45,17 @@ An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 * Value at Risk (VaR)
 * Expected Shortfall (ES)
 
----
-
 ### Stress Testing Scenarios
 
 * Market Crash (-20%)
 * Interest Rate Shock
 * Emerging Market Crisis
 
----
-
 ### Monte Carlo Simulation
 
 * 10,000 simulated scenarios
 * Multivariate Normal distribution
 * Multivariate Student-t distribution (fat tails)
-
----
 
 ## Key Results
 
@@ -79,8 +65,6 @@ An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 * Negative skewness → **downside asymmetry**
 * High kurtosis (~8.6) → **fat tails / extreme events**
 
----
-
 ###  Tail Risk Insights
 
 * VaR (95%): **~2.75% daily loss**
@@ -88,15 +72,11 @@ An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 
 > VaR underestimates extreme risk — ES provides a more realistic measure.
 
----
-
 ### Stress Testing Results
 
 * Market crash scenario produces **2x loss amplification**
 * Portfolio losses exceed **25% over a 1-month horizon** under stress
 * Diversification weakens significantly during systemic shocks
-
----
 
 ###  Model Comparison 
 
@@ -108,9 +88,7 @@ An equally weighted portfolio valued arbitrarily at 1M$ consisting of:
 Student-t captures **fat tails and extreme losses**
 Normal distribution **underestimates tail risk**
 
-> This highlights the importance of model selection in financial risk management.
-
----
+This highlights the importance of model selection in financial risk management.
 
 ## Key Takeaways
 
@@ -120,15 +98,11 @@ Normal distribution **underestimates tail risk**
 * VaR alone is insufficient → ES + stress testing are essential
 * Model assumptions significantly impact risk estimates
 
----
-
 ##  Limitations
 
 * Assumes static portfolio weights
 * Relies partly on historical data
 * Normal Monte Carlo underestimates extreme events
-
----
 
 ## Future Improvements
 
@@ -137,11 +111,7 @@ Normal distribution **underestimates tail risk**
 * Dynamic portfolio optimization
 * Macro-driven scenario modeling
 
----
-
 ##  Project Structure
-
-```
 portfolio-stress-testing/
 ├── README.md
 ├── scripts/
@@ -155,7 +125,6 @@ portfolio-stress-testing/
 │   └── graphical plots
 │   └── table results
 
----
 
 ## Tech Stack
 
@@ -163,20 +132,16 @@ portfolio-stress-testing/
 * **SQL (MySQL)** for data storage
 * **Excel** for reporting
 
----
-
 ## How to Run
 
 1. Clone the repository
-2. Open `scripts/main_pipeline.R`
+2. Open scripts/main_pipeline.R
 3. Run the script to:
 
    * fetch data
    * compute risk metrics
    * generate stress scenarios
    * export results
-
----
 
 ## Why This Project Matters
 
@@ -188,18 +153,9 @@ This project demonstrates practical skills in:
 * Model validation and comparison
 * Building reproducible analytical pipelines
 
----
-
-## 👤 Author
-
+## Author
 **Maina Silvia**
 Aspiring Quant / Financial Engineer
 
----
-
 ## Final Insight
-
 Portfolio risk is driven not by average outcomes, but by extreme events — making tail risk modeling essential for real-world financial decision-making.
-
-Author
-Maina Silvia
